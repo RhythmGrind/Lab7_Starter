@@ -52,13 +52,16 @@ function initializeServiceWorker() {
   // Steps B3-B6 will be *inside* the event listener's function created in B2
   // B3. TODO - Register './sw.js' as a service worker (The MDN article
   //            "Using Service Workers" will help you here)
-    navigator.serviceWorker.register('./sw.js').then(registration => {
+    const registration = navigator.serviceWorker.register("./sw.js");
+    if(registration){
       console.log('Service worker registered successfully!');
-    }, error => {
-      console.log('Service worker registration failed:', error);
-    });
+    }
+    else{
+      console.error('Service worker registration failed.');
+    };
   });
-} else{
+} 
+else{
   console.log('Service workers are not supported in this browser.');
 
 }
